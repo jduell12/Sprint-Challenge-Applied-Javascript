@@ -79,5 +79,28 @@ function carousel(imgArray){
 
   })
 
+  //creates event handler for right button
+  rightButtonDiv.addEventListener('click', event => {
+    let indexImg = document.querySelector('.currentIndex');
+    indexImg.classList.remove('currentIndex');
+    let i = -1;
+    
+    imgElements.forEach((item, index) => {
+      if (item === indexImg){
+        i = index;
+        return i;
+      }
+    })
+    let newIndex = i + 1;
+
+    if(newIndex < 0){
+      newIndex = imgElements.length-1;
+    } else if(newIndex > imgElements.length-1){
+      newIndex = 0;
+    } 
+
+    imgElements[newIndex].classList.add('currentIndex');
+  })
+
   return divCarousel;
 }
