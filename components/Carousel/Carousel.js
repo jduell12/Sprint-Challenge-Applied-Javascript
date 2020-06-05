@@ -67,7 +67,15 @@ function carousel(imgArray){
         return i;
       }
     })
-    console.log(i);
+    let newIndex = i - 1;
+
+    if(newIndex < 0){
+      newIndex = imgElements.length-1;
+    } else if(newIndex > imgElements.length-1){
+      newIndex = 0;
+    } 
+
+    imgElements[newIndex].classList.add('currentIndex');
 
   })
 
