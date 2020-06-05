@@ -24,13 +24,13 @@ let carouselImgs = ['./assets/carousel/mountains.jpeg', './assets/carousel/compu
 
 let newCarousel = carousel(carouselImgs);
 carouselContainer.appendChild(newCarousel);
-console.log(newCarousel);
 
 function carousel(imgArray){
   //create elements of carousel
   let divCarousel = document.createElement('div');
   let leftButtonDiv = document.createElement('div');
   let rightButtonDiv =document.createElement('div');
+  let imgElements = [];
 
   //add classes to each element 
   divCarousel.classList.add('carousel');
@@ -48,11 +48,28 @@ function carousel(imgArray){
     let img = document.createElement('img');
     img.src = item;
     divCarousel.appendChild(img);
+    imgElements.push(img);
   })
 
   //give current index to first image on carousel div
-  divCarousel.childNodes[1].classList.add('currentIndex');
+  imgElements[0].classList.add('currentIndex');
   divCarousel.appendChild(rightButtonDiv);
+
+  //creates event handler for left button
+  leftButtonDiv.addEventListener('click', event => {
+    let indexImg = document.querySelector('.currentIndex');
+    indexImg.classList.remove('currentIndex');
+    let i = -1;
+    
+    imgElements.forEach((item, index) => {
+      if (item === indexImg){
+        i = index;
+        return i;
+      }
+    })
+    console.log(i);
+
+  })
 
   return divCarousel;
 }
